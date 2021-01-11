@@ -1,0 +1,9 @@
+CREATE SCHEMA `ExamUser` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
+
+CREATE TABLE `user` (
+`ID` BIGINT NOT NULL AUTO_INCREMENT,
+`username` VARCHAR (50),
+`password` VARCHAR (255),
+PRIMARY KEY (`ID`)
+);
+
