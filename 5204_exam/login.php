@@ -9,13 +9,13 @@
 </head>
 <body>
   <div class="login-wrapper">
-    <form class="login-form">
+    <form class="login-form" method="post">
       <h2>Log in to the system</h2>
       <label for="username">Username</label>
-      <input id="username" type="text">
+      <input id="username" type="text" name="username">
       <label for="password">Password</label>
-      <input id="password" type="password">
-      <button type="submit">Go!</button>
+      <input id="password" type="password" name="password">
+      <button type="submit" name="submit">Go!</button>
     </form>
   </div>
 </body>
