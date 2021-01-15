@@ -1,6 +1,6 @@
 <?php
 
 $dbName = "KathaNachhilfe";
-$dbUser = "root";
-$dbPassword = "root";
+$dbUser = "nachhilfe";
+$dbPassword = "Nachhilfe1";
 $host = "localhost";

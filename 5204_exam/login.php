@@ -1,3 +1,29 @@
+<?php
+require ("NoeSolution/backend/db.properties.php");
+require ("NoeSolution/backend/Connection.class.php");
+require ("NoeSolution/backend/Login.class.php");
+
+$myInstance = new Connection($host, $dbUser, $dbName, $dbName);
+$recordArray = $myInstance -> readMethod();
+
+$login = new Login();
+
+$username = "";
+$password = "";
+$submit = isset($_POST["submit"]);
+
+if ($submit){
+
+  $username = $_POST["username"];
+  $password = $_POST["password"];
+
+  if (!empty($username) && !empty($password)){
+    $getOne = $myInstance -> getSingleRecord($username);
+    //$login ->getUser($username, $password);
+    echo "login";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
