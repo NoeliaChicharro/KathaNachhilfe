@@ -1,28 +1,35 @@
 <?php
-require ("NoeSolution/backend/db.properties.php");
-require ("NoeSolution/backend/Connection.class.php");
-require ("NoeSolution/backend/Login.class.php");
+require ("php/Connection.php");
+require ("php/LoginValidation.php");
 
-$myInstance = new Connection($host, $dbUser, $dbName, $dbName);
-$recordArray = $myInstance -> readMethod();
+/* DB Variables */
+$dsn = "mysql:dbname=nachhilfeKatha;host=localhost";
+$username = "nachhilfeKatha";
+$passw = "nachhilfeKatha";
+$con = $dsn.$username.$passw;
 
-$login = new Login();
+/* Instances */
+$connection = new Connection($dsn, $username, $passw);
+$loginValidation = new LoginValidation();
 
-$username = "";
-$password = "";
+$inputUsername = "";
+$inputPassword = "";
 $submit = isset($_POST["submit"]);
 
 if ($submit){
+  $inputUsername = $_POST["username"];
+  $inputPassword = $_POST["password"];
 
-  $username = $_POST["username"];
-  $password = $_POST["password"];
+  if (!empty($inputUsername) && !empty($inputPassword)){
+    echo "everything fine";
 
-  if (!empty($username) && !empty($password)){
-    $getOne = $myInstance -> getSingleRecord($username);
-    //$login ->getUser($username, $password);
-    echo "login";
+    $loginValidation -> validateUser($inputUsername, $inputPassword, $con);
+
+  } else {
+    echo "Please enter a name and a password";
   }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +48,7 @@ if ($submit){
       <input id="username" type="text" name="username">
       <label for="password">Password</label>
       <input id="password" type="password" name="password">
-      <button type="submit" name="submit">Go!</button>
+      <button type="submit" name="submit">Submit!</button>
     </form>
   </div>
 </body>
